@@ -120,11 +120,27 @@ class Board:
         return 'No Win'
     
     def playable(self):
+        
+        topCard = self.drawPile[-1]
+        if topCard == 'W':
+            return self.hands[self.turn]
+        
         res = []
         for card in self.hands[self.turn]:
             if card == 'W' or card == 'W+4':
                 res.append(card)
                 continue
+            
+            if card[1:] == topCard[1:]:
+                res.append(card)
+                continue
+            
+            if card[0] == topCard[0]:
+                res.append(card)
+                continue
+        
+        return res
+            
             
 
             
